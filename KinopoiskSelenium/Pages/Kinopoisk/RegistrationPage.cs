@@ -13,18 +13,33 @@ namespace KinopoiskSelenium.Pages.Kinopoisk
         private By LoginField { get; } = By.Id("passp-field-login");
         private By PasswordField { get; } = By.Id("passp-field-passwd");
         private By SubmitButton { get; } = By.XPath("//button[@type='submit']");
-        private By InvalidPasswordMessage { get; } = By.XPath("//div[contains(text(),\"Неверный пароль\")]");
+        private By InvalidPasswordMessage { get; } = By.XPath("//div[contains(text(),'Неверный пароль')]");
         public RegistrationPage(ConciseApi conciseApi) : base(conciseApi)
         {
         }
 
-        public T LoginWithCredentials<T>(bool isValidCredentials) where T : BasePage
+        //public T LoginWithCredentials<T>(bool isValidCredentials) where T : BasePage
+        //{
+        //    var password = isValidCredentials ? _validPassword : _invalidPassword;
+        //    InsertLoginAndSubmit(_validLogin);
+        //    InsertPasswordAndSubmit(password);
+        //    return isValidCredentials ? new MainPage(ConciseApi) as T : this as T;
+        //}
+
+        public BasePage LoginWithCredentials(bool isValidCredentials)
         {
             var password = isValidCredentials ? _validPassword : _invalidPassword;
             InsertLoginAndSubmit(_validLogin);
             InsertPasswordAndSubmit(password);
-            return isValidCredentials ? new MainPage(ConciseApi) as T : this as T;
+            return isValidCredentials ? (BasePage) new MainPage(ConciseApi) : this;
         }
+
+        public BasePage LoginWithCredentials(string login, string password)
+        {
+            var isValidCredentials = _validPassword.Equals(password);
+            return LoginWithCredentials(isValidCredentials);
+        }
+
         private void InsertLoginAndSubmit(string login)
         {
             ConciseApi.InsertText(LoginField, login);

@@ -16,7 +16,7 @@ namespace KinopoiskSelenium.Tests.Kinopoisk
         {
             MainPage mainPage = new MainPage(ConciseApi);
             RegistrationPage registrationPage = mainPage.GoToLoginPage();
-            mainPage = registrationPage.LoginWithCredentials<MainPage>(true);
+            mainPage = (MainPage) registrationPage.LoginWithCredentials(true);
 
             Assert.True(mainPage.IsUserLoggedIn());
         }
@@ -26,7 +26,7 @@ namespace KinopoiskSelenium.Tests.Kinopoisk
         {
             MainPage mainPage = new MainPage(ConciseApi);
             RegistrationPage registrationPage = mainPage.GoToLoginPage();
-            registrationPage.LoginWithCredentials<RegistrationPage>(false);
+            registrationPage.LoginWithCredentials(false);
 
             Assert.True(registrationPage.IsUserNotLoggedIn());
         }

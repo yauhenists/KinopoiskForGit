@@ -11,20 +11,20 @@ namespace KinopoiskSelenium.Tests
 {
     public abstract class BaseTest
     {
-        public ConciseApi ConciseApi { get; }
-        public IWebDriver Driver { get; }
+        public ConciseApi ConciseApi { get; private set; }
+        public IWebDriver Driver { get; private set; }
 
         public BaseTest()
         {
-            //Driver = new ChromeDriver();
-            //ConciseApi = new ConciseApi(Driver);
+            Driver = new ChromeDriver();
+            ConciseApi = new ConciseApi(Driver);
         }
 
         [SetUp]
         public void SetUp()
         {
-            Driver = new ChromeDriver();
-            ConciseApi = new ConciseApi(Driver);
+            //Driver = new ChromeDriver();
+            //ConciseApi = new ConciseApi(Driver);
             Driver.Manage().Window.Maximize();
         }
 

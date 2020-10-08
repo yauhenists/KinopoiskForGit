@@ -20,7 +20,7 @@ namespace KinopoiskSelenium
             Wait = new DefaultWait<IWebDriver>(Driver)
             {
                 PollingInterval = TimeSpan.FromMilliseconds(250),
-                Timeout = TimeSpan.FromSeconds(7)
+                Timeout = TimeSpan.FromSeconds(9)
             };
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
         }
@@ -43,6 +43,21 @@ namespace KinopoiskSelenium
         public void InsertText(By element, string text)
         {
             GetElement(element).SendKeys(text);
+        }
+
+        public string GetUrl()
+        {
+            return Driver.Url;
+        }
+
+        public string GetSourceCode()
+        {
+            return Driver.PageSource;
+        }
+
+        public string GetPageTitle()
+        {
+            return Driver.Title;
         }
 
         public T AssertThat<T>(Func<IWebDriver, T> condition)

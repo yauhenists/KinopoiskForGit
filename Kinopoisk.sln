@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinopoiskSelenium", "KinopoiskSelenium\KinopoiskSelenium.csproj", "{C58930CE-DE9F-4812-B40D-6EBFABA8AF1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowTests", "SpecFlowTests\SpecFlowTests.csproj", "{8824414D-3AFE-478B-8D82-2C090DF9B4B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C58930CE-DE9F-4812-B40D-6EBFABA8AF1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C58930CE-DE9F-4812-B40D-6EBFABA8AF1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C58930CE-DE9F-4812-B40D-6EBFABA8AF1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8824414D-3AFE-478B-8D82-2C090DF9B4B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8824414D-3AFE-478B-8D82-2C090DF9B4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8824414D-3AFE-478B-8D82-2C090DF9B4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8824414D-3AFE-478B-8D82-2C090DF9B4B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
