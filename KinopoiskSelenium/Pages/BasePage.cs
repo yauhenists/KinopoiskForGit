@@ -13,6 +13,7 @@ namespace KinopoiskSelenium.Pages
         public BasePage(ConciseApi conciseApi)
         {
             ConciseApi = conciseApi;
+            OpenPage();
         }
 
         public abstract void OpenPage();

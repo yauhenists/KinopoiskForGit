@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using KinopoiskSelenium;
 using KinopoiskSelenium.Pages.ToolsQA;
+using KinopoiskSelenium.Tests;
+using KinopoiskSelenium.Tests.ToolsQA;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 
@@ -14,10 +16,12 @@ namespace SpecFlowTests.ToolsQASteps
     {
         private readonly ConciseApi _conciseApi;
         private MainChecksPage _mainPage;
+        private readonly BaseTest _tests;
 
-        public MainChecks(ConciseApi conciseApi)
+        public MainChecks(ConciseApi conciseApi, ToolsQAMainTests tests)
         {
             _conciseApi = conciseApi;
+            _tests = tests;
         }
 
         [Given(@"I have opened ToolsQA page")]

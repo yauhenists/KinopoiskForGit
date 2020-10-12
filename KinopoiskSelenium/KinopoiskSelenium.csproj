@@ -142,11 +142,14 @@
     <Compile Include="ConciseApi.cs" />
     <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\ToolsQA\MainChecksPage.cs" />
+    <Compile Include="Pages\ToolsQA\PracticeForm.cs" />
+    <Compile Include="Pages\ToolsQA\PracticeFormPage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\Kinopoisk\KinopoiskTests.cs" />
     <Compile Include="Pages\Kinopoisk\MainPage.cs" />
     <Compile Include="Pages\Kinopoisk\RegistrationPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\ToolsQA\PracticeFormTests.cs" />
     <Compile Include="Tests\ToolsQA\ToolsQAMainTests.cs" />
   </ItemGroup>
   <ItemGroup>
