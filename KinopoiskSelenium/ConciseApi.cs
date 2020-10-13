@@ -77,22 +77,21 @@ namespace KinopoiskSelenium
             }
         }
 
-        public void SelectCheckBox(By checkBox)
+        public void SelectCheckBox(params By[] checkBoxes)
         {
-            var checkboxel = GetElement(checkBox);
-            if (checkboxel.Selected)
+            var elements = new List<IWebElement>();
+            foreach (var checkBox in checkBoxes)
             {
-                Console.WriteLine("CheckBox is already selected. This action will uncheck it");
+                var element = GetElement(checkBox);
+                elements.Add(element);
             }
-            else
-            {
-                _checkedElements.Add(checkboxel);
-                foreach (var el in _checkedElements)
-                {
-                    PerformClickViaActions(checkboxel);
-                }
-                Actions.Perform();
-            }
+
+            PerformClickViaActions(elements.ToArray());
+            //if (checkboxel.Selected)
+            //{
+            //    Console.WriteLine("CheckBox is already selected. This action will uncheck it");
+            //}
+
         }
 
         public bool IsElementSelected(By element)
@@ -105,15 +104,14 @@ namespace KinopoiskSelenium
             return Wait.Until(condition);
         }
 
-        private void PerformClickViaActions(IWebElement element)
+        private void PerformClickViaActions(params IWebElement[] elements)
         {
-            Actions.MoveToElement(element).Click();
-            if (element.Selected)
+            foreach (var element in elements)
             {
-                return;
+                Actions.Click(element);
             }
-            Actions.MoveToElement(element).Click();//.Perform();
-            //Actions.Perform();
+
+            Actions.Perform();
         }
     }
 }

@@ -26,10 +26,9 @@ namespace KinopoiskSelenium.Tests.ToolsQA
         public void SelectFirstCheckBox()
         {
             PracticeFormPage page = new PracticeFormPage(ConciseApi);
-            page.SelectCheckBox(Hobbies.Sports);
-            page.SelectCheckBox(Hobbies.Music);
+            page.SelectCheckBox(Hobbies.Sports, Hobbies.Music);
             Assert.True(page.IsCheckBoxSelected(Hobbies.Sports));
-            Assert.False(page.IsCheckBoxSelected(Hobbies.Music));
+            Assert.True(page.IsCheckBoxSelected(Hobbies.Music));
         }
 
     }

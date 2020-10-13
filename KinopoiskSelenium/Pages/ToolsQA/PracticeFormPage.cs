@@ -11,7 +11,7 @@ namespace KinopoiskSelenium.Pages.ToolsQA
     {
         private string _url = "https://demoqa.com/automation-practice-form";
 
-        private By SportsCheckBox { get; } = By.Id("hobbies-checkbox-1");
+        private By SportsCheckBox { get; } =By.Id("hobbies-checkbox-1");
         private By ReadingCheckBox { get; } = By.Id("hobbies-checkbox-2");
         private By MusicCheckBox { get; } = By.Id("hobbies-checkbox-3");
         private By MaleRadioButton { get; } = By.Id("gender-radio-1");
@@ -37,13 +37,19 @@ namespace KinopoiskSelenium.Pages.ToolsQA
             }
         }
 
-        public void SelectCheckBox(Hobbies checkbox)
+        public void SelectCheckBox(params Hobbies[] checkboxes)
         {
-            By element = GetCheckBox(checkbox);
-            if (element != null)
+            List<By>listCheckBoxes = new List<By>();
+            foreach (var checkBox in checkboxes)
             {
-                ConciseApi.SelectCheckBox(element);
+                By element = GetCheckBox(checkBox);
+                if (element != null)
+                {
+                    listCheckBoxes.Add(element);
+                }
             }
+            
+            ConciseApi.SelectCheckBox(listCheckBoxes.ToArray());
         }
 
         public bool IsRadioButtonSelected(Gender button)
