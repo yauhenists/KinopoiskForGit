@@ -14,7 +14,7 @@ namespace KinopoiskSelenium
     {
         private IWebDriver Driver { get; }
         private DefaultWait<IWebDriver> Wait { get; }
-        private Actions Actions { get; }
+        private Actions Actions { get; set; }
         private List<IWebElement>_checkedElements = new List<IWebElement>();
 
         public ConciseApi(IWebDriver driver)
@@ -26,7 +26,6 @@ namespace KinopoiskSelenium
                 Timeout = TimeSpan.FromSeconds(9)
             };
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            Actions = new Actions(Driver);
         }
 
         public void Open(string url)
@@ -66,6 +65,7 @@ namespace KinopoiskSelenium
 
         public void SelectRadioButton(By radioButton)
         {
+            SetActions();
             var button = GetElement(radioButton);
             if (button.Selected)
             {
@@ -79,19 +79,23 @@ namespace KinopoiskSelenium
 
         public void SelectCheckBox(params By[] checkBoxes)
         {
+            SetActions();
             var elements = new List<IWebElement>();
             foreach (var checkBox in checkBoxes)
             {
                 var element = GetElement(checkBox);
                 elements.Add(element);
+
+                if (element.Selected)
+                {
+                    Console.WriteLine("CheckBox is already selected. This action will uncheck it");
+                }
+
+                Actions.Click(element).Build();
             }
 
-            PerformClickViaActions(elements.ToArray());
-            //if (checkboxel.Selected)
-            //{
-            //    Console.WriteLine("CheckBox is already selected. This action will uncheck it");
-            //}
-
+            Actions.Perform();
+            
         }
 
         public bool IsElementSelected(By element)
@@ -111,7 +115,12 @@ namespace KinopoiskSelenium
                 Actions.Click(element);
             }
 
-            Actions.Perform();
+            Actions.Build().Perform();
+        }
+
+        private void SetActions()
+        {
+            Actions = new Actions(Driver);
         }
     }
 }
