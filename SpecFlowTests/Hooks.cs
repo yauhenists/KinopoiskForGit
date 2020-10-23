@@ -14,19 +14,19 @@ using TechTalk.SpecFlow;
 namespace SpecFlowTests
 {
     [Binding]
-    public class Hooks
+    public class Hooks//<T> where T : BaseTest, new()
     {
         private readonly IObjectContainer _container;
-        private readonly BaseTest _tests;
+        private PracticeFormTests _tests;
         private IWebDriver _driver;
+        private ConciseApi _conciseApi;
 
         //private ConciseApi _conciseApi;
         //private IWebDriver _driver;
 
-        public Hooks(IObjectContainer container, BaseTest tests)
+        public Hooks(IObjectContainer container)
         {
             _container = container;
-            _tests = tests;
         }
 
         [BeforeScenario]
@@ -35,9 +35,13 @@ namespace SpecFlowTests
             //_tests = new KinopoiskTests();
             //_tests = new PracticeFormTests();
             //_conciseApi = _tests.ConciseApi;
+            //_tests = _container.Resolve<IBaseTest>();
+            _tests = _container.Resolve<PracticeFormTests>();
+            _conciseApi = _tests.ConciseApi;
             _driver = _tests.Driver;
             //_container.RegisterInstanceAs(_tests);
             _container.RegisterInstanceAs(_driver);
+            _container.RegisterInstanceAs(_conciseApi);
             _tests.SetUp();
         }
 

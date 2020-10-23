@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 
 namespace KinopoiskSelenium.Pages.ToolsQA
 {
-    class PracticeFormPage : BasePage
+    public class PracticeFormPage : BasePage
     {
         private string _url = "https://demoqa.com/automation-practice-form";
 

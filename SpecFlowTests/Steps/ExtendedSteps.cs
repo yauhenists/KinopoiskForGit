@@ -12,16 +12,20 @@ namespace SpecFlowTests.Steps
     {
         
         private readonly Calculator _calculator;
-        private readonly ObjectA _objectA;
-        private readonly ObjectB _objectB;
+        private  ObjectA _objectA;
+        private  ObjectB _objectB;
         private readonly IObjectContainer _container;
 
         public ExtendedSteps(IObjectContainer container, Calculator calculator, ObjectA objectA)
         {
-            _container = container;
             _calculator = calculator;
             _objectA = objectA;
-            _objectB = _container.Resolve<ObjectB>(); //new ObjectB(){Info = "Created in Extended constructor"};
+            //_objectB = container.Resolve<ObjectB>(); //new ObjectB(){Info = "Created in Extended constructor"};
+            _objectB = _calculator.ObjectB;
+            //_objectB.Info = "Updated in extended constructor";
+            //_container.RegisterInstanceAs(_objectB);
+
+            Console.WriteLine("extended hooks constructor");
         }
 
         [Then(@"check result from Extended steps")]
@@ -37,7 +41,10 @@ namespace SpecFlowTests.Steps
             Console.WriteLine($"Object B from extended step - {_objectB.Info}");
 
             _objectA.Info = "Object A updated from extended step";
+            
             _objectB.Info = "Object B updated from extended step";
+            _objectA = new ObjectA(){Info = "Extended info"};
+            
         }
 
 

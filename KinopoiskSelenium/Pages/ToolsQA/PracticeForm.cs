@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace KinopoiskSelenium.Pages.ToolsQA
 {
-    enum Gender
+    public enum Gender
     {
         Male,
         Female,
         Other
     }
 
-    enum Hobbies
+    public enum Hobbies
     {
         Sports,
         Reading,

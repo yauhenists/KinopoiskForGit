@@ -3,7 +3,7 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 
-@scopeBinding
+@SpecFlowSampleFeature
 Scenario: Add two numbers via table
 	When I add to numbers
 	| FirstNumber | SecondNumber | Result |

@@ -138,7 +138,9 @@
     <Compile Include="Steps\SampleSteps.cs" />
     <Compile Include="Steps\ScopeBindingExample.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="ToolsQASteps\CustomStepTransformer.cs" />
     <Compile Include="ToolsQASteps\MainChecks.cs" />
+    <Compile Include="ToolsQASteps\PracticeFormChecks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -147,6 +149,7 @@
     <None Include="KinopoiskFeatures\LoginAndLogoutSteps.feature" />
     <None Include="packages.config" />
     <None Include="ToolsQAFeatures\BrowserCommandsFeature.feature" />
+    <None Include="ToolsQAFeatures\RadioButtonsAndCheckBoxes.feature" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KinopoiskSelenium\KinopoiskSelenium.csproj">

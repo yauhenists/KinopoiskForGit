@@ -16,16 +16,22 @@ namespace SpecFlowTests.Steps
         public int FirstNumber { get; set; }
         public int SecondNumber { get; set; }
         public int Result { get; set; }
+        public ObjectB ObjectB;
+
+        public Calculator()
+        {
+            ObjectB = new ObjectB(){Info = "Created in Calculator"};
+        }
     }
 
     public class ObjectA
     {
-        public string Info { get; set; }
+        public string Info { get; set; } = "default info A";
     }
 
     public class ObjectB
     {
-        public string Info { get; set; }
+        public string Info { get; set; } = "default info B";
     }
 
     [Binding]
@@ -42,6 +48,10 @@ namespace SpecFlowTests.Steps
             _calculator = calculator;
             _objectA = objectA;
             _objectA.Info = "ObjectA from constructor";
+
+            _objectB = _container.Resolve<ObjectB>();
+            Console.WriteLine("test constructor");
+            Console.WriteLine(_objectB.Info);
 
         }
 
@@ -89,14 +99,16 @@ namespace SpecFlowTests.Steps
 
             //_objectA.Info = "Object A updated from step";
             //_objectA = new ObjectA(){Info = "Object A created from step" };
-            _objectB = new ObjectB(){Info = "Object B from step"};
-            _container.RegisterInstanceAs(_objectB);
+
+            //_objectB = new ObjectB(){Info = "Object B from step"};
+            _objectB = _calculator.ObjectB;
+            //_container.RegisterInstanceAs(_objectB);
 
             //some checks for Objects A and B
         }
 
         [Then(@"check the result")]
-        [Scope(Feature = "SpecFlowSampleFeature")]
+        [Scope(Tag = "SpecFlowSampleFeature")]
         public void ThenCheckTheResult()
         {
             Console.WriteLine($"FirstNumber = {_calculator.FirstNumber}");
@@ -105,7 +117,7 @@ namespace SpecFlowTests.Steps
             Assert.AreEqual(_calculator.Result, _calculator.FirstNumber + _calculator.SecondNumber);
 
             Console.WriteLine($"Getting info of Object A - {_objectA.Info}");
-            //Console.WriteLine($"Getting info of Object B - {_objectB.Info}");
+            Console.WriteLine($"Getting info of Object B - {_objectB.Info}");
         }
 
         [When(@"I add two numbers (.*), (.*)")]
