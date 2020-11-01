@@ -34,5 +34,28 @@ namespace KinopoiskSelenium.Tests.ToolsQA
             Assert.True(page.IsCheckBoxSelected(Hobbies.Reading));
         }
 
+        [Test]
+        public void SelectMultipleDropDownMenu()
+        {
+            SelectMenuPage page = new SelectMenuPage(ConciseApi);
+            page.SelectInOldStyleSelectMenu(1);
+            Assert.True(page.SelectedItemText == "Blue");
+            page.SelectInOldStyleSelectMenu("Black");
+            Assert.True(page.SelectedItemText == "Black");
+            page.SelectInOldStyleSelectMenu("10", false);
+            Assert.True(page.SelectedItemText == "Aqua");
+            page.SelectCar("volvo");
+            page.SelectCar("opel");
+            page.WriteSelectedCars();
+        }
+
+        [Test]
+        public void SelectDynamicDropDown()
+        {
+            SelectMenuPage page = new SelectMenuPage(ConciseApi);
+            page.SelectTitle("Mr.");
+            Assert.True(page.GetSelectedTitle() == "Mr.");
+        }
+
     }
 }
