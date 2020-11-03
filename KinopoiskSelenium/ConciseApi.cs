@@ -28,6 +28,7 @@ namespace KinopoiskSelenium
                 Timeout = TimeSpan.FromSeconds(9)
             };
             Wait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            Wait.IgnoreExceptionTypes(typeof(NoAlertPresentException));
         }
 
         public void Open(string url)
@@ -223,6 +224,11 @@ namespace KinopoiskSelenium
         public T AssertThat<T>(Func<IWebDriver, T> condition)
         {
             return Wait.Until(condition);
+        }
+
+        public IAlert GetAlert()
+        {
+            return AssertThat(d => d.SwitchTo().Alert());
         }
 
         private void PerformClickViaActions(params IWebElement[] elements)

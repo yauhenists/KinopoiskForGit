@@ -5,3 +5,4 @@ KinopoiskSelenium/obj/
 /.vs/Kinopoisk/v16
 /.vs
 /SpecFlowTests/bin/Debug
+/SpecFlowTests/obj/Debug
