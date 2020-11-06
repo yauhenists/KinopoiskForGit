@@ -138,6 +138,7 @@
     <Compile Include="Steps\SampleSteps.cs" />
     <Compile Include="Steps\ScopeBindingExample.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="ToolsQASteps\AlertsSteps.cs" />
     <Compile Include="ToolsQASteps\CustomStepTransformer.cs" />
     <Compile Include="ToolsQASteps\MainChecks.cs" />
     <Compile Include="ToolsQASteps\PracticeFormChecks.cs" />
@@ -149,6 +150,7 @@
     <None Include="Features\Samples.feature" />
     <None Include="KinopoiskFeatures\LoginAndLogoutSteps.feature" />
     <None Include="packages.config" />
+    <None Include="ToolsQAFeatures\AlertsFeature.feature" />
     <None Include="ToolsQAFeatures\BrowserCommandsFeature.feature" />
     <None Include="ToolsQAFeatures\DropDownFeature.feature" />
     <None Include="ToolsQAFeatures\RadioButtonsAndCheckBoxes.feature" />

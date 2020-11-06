@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,13 @@ using OpenQA.Selenium.Support.UI;
 
 namespace KinopoiskSelenium
 {
+    public enum WayToIframe
+    {
+        Index = 1,
+        Name,
+        ID,
+        WebElement
+    }
     public class ConciseApi
     {
         private IWebDriver Driver { get; }
@@ -51,9 +59,9 @@ namespace KinopoiskSelenium
             return AssertThat(d => d.FindElements(element)).ToList();
         }
 
-        public List<IWebElement> GetElements(IWebElement basElement, By element)
+        public List<IWebElement> GetElements(IWebElement baseElement, By element)
         {
-            return AssertThat(d => basElement.FindElements(element)) .ToList();
+            return AssertThat(d => baseElement.FindElements(element)) .ToList();
         }
 
         public void Click(By element)
@@ -229,6 +237,43 @@ namespace KinopoiskSelenium
         public IAlert GetAlert()
         {
             return AssertThat(d => d.SwitchTo().Alert());
+        }
+
+        public int GetIframeNumberViaJs()
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor) Driver;
+            return Convert.ToInt32(executor.ExecuteScript("return window.length").ToString());
+        }
+
+        public int GetIframeNumberViaTagName()
+        {
+            return GetElements(By.TagName("iframe")).Count;
+        }
+
+        public void SwitchToIframe(WayToIframe way, object obj)
+        {
+            switch (way)
+            {
+                case WayToIframe.Index:
+                    Driver.SwitchTo().Frame((int) obj);
+                    break;
+                case WayToIframe.ID:
+                    Driver.SwitchTo().Frame((string) obj);
+                    break;
+                case WayToIframe.WebElement:
+                    Driver.SwitchTo().Frame(GetElement((By) obj));
+                    break;
+            }
+        }
+
+        public void SwitchToMainIframe()
+        {
+            Driver.SwitchTo().ParentFrame();
+        }
+
+        public string GetAttributeValue(By element, string attribute)
+        {
+            return GetElement(element).GetAttribute(attribute);
         }
 
         private void PerformClickViaActions(params IWebElement[] elements)

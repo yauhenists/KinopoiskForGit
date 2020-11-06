@@ -20,6 +20,9 @@ namespace KinopoiskSelenium.Pages.ToolsQA
         private IAlert _alert;
         private Timestamp _startTime;
         private Timestamp _endTime;
+        public string AlertText { get; private set; }
+        public string ConfirmationResult { get; private set; }
+        public int Seconds { get; private set; }
 
         public AlertsPage(ConciseApi conciseApi) : base(conciseApi)
         {
@@ -60,13 +63,18 @@ namespace KinopoiskSelenium.Pages.ToolsQA
         {
             _alert = ConciseApi.GetAlert();
             _endTime = DateTime.UtcNow.ToTimestamp();
+            AlertText = _alert.Text;
             Console.WriteLine(_alert.Text);
         }
 
         public void ConfirmAlert()
         {
             _alert.Accept();
-            Console.WriteLine($"Time of appearing alert is {(_endTime - _startTime)} milliseconds");
+            if (_startTime != null)
+            {
+                Seconds = (int)(_endTime - _startTime).Seconds;
+                Console.WriteLine($"Time of appearing alert is {Seconds} seconds");
+            }
         }
 
         public void ActConfirmationAlert(bool confirm)
@@ -81,7 +89,9 @@ namespace KinopoiskSelenium.Pages.ToolsQA
                 _alert.Dismiss();
             }
 
-            Console.WriteLine("Confirmation text: " + ConciseApi.GetTextOfTheElement(_confirmResult));
+            ConfirmationResult = ConciseApi.GetTextOfTheElement(_confirmResult);
+            Console.WriteLine("Confirmation text: " + ConfirmationResult);
+
         }
 
         public void ActPromptAlert(bool confirm)
@@ -90,7 +100,8 @@ namespace KinopoiskSelenium.Pages.ToolsQA
             {
                 _alert.SendKeys("test");
                 _alert.Accept();
-                Console.WriteLine("Confirmation text: " + ConciseApi.GetTextOfTheElement(_promptResult));
+                ConfirmationResult = ConciseApi.GetTextOfTheElement(_promptResult);
+                Console.WriteLine("Confirmation text: " + ConfirmationResult);
 
             }
             else
@@ -98,10 +109,12 @@ namespace KinopoiskSelenium.Pages.ToolsQA
                 _alert.Dismiss();
                 try
                 {
-                    var text = ConciseApi.GetTextOfTheElement(_promptResult);
+                    //var text = ConciseApi.GetTextOfTheElement(_promptResult);
+                    ConfirmationResult = ConciseApi.GetTextOfTheElement(_promptResult);
                 }
                 catch (Exception e)
                 {
+                    ConfirmationResult = String.Empty;
                     Console.WriteLine("No text as it was cancelled");
                 }
             }
