@@ -212,6 +212,7 @@ namespace KinopoiskSelenium
             }
 
             return cars;
+
         }
 
         public string GetTextOfTheElement(By element)
@@ -271,9 +272,29 @@ namespace KinopoiskSelenium
             Driver.SwitchTo().ParentFrame();
         }
 
+        public void SwitchTabOrWindow(string windowHandle)
+        {
+            Driver.SwitchTo().Window(windowHandle);
+        }
+
+        public string GetCurrentWindowHandle()
+        {
+            return Driver.CurrentWindowHandle;
+        }
+
+        public List<string> GetWindowHandles()
+        {
+            return Driver.WindowHandles.ToList();
+        }
+
         public string GetAttributeValue(By element, string attribute)
         {
             return GetElement(element).GetAttribute(attribute);
+        }
+
+        public void CloseCurrentWindow()
+        {
+            Driver.Close();
         }
 
         private void PerformClickViaActions(params IWebElement[] elements)

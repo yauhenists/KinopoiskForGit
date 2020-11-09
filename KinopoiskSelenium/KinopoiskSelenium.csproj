@@ -144,6 +144,7 @@
     <Compile Include="Pages\ToolsQA\AlertsPage.cs" />
     <Compile Include="Pages\ToolsQA\IframesPage.cs" />
     <Compile Include="Pages\ToolsQA\MainChecksPage.cs" />
+    <Compile Include="Pages\ToolsQA\MultiplePages.cs" />
     <Compile Include="Pages\ToolsQA\PracticeForm.cs" />
     <Compile Include="Pages\ToolsQA\PracticeFormPage.cs" />
     <Compile Include="Pages\ToolsQA\SelectMenuPage.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ToolsQA\AlertsTests.cs" />
     <Compile Include="Tests\ToolsQA\IframesTests.cs" />
+    <Compile Include="Tests\ToolsQA\MultipleWindowsTests.cs" />
     <Compile Include="Tests\ToolsQA\PracticeFormTests.cs" />
     <Compile Include="Tests\ToolsQA\Tabletka\TabletkaTableTests.cs" />
     <Compile Include="Tests\ToolsQA\ToolsQAMainTests.cs" />
