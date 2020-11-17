@@ -297,6 +297,12 @@ namespace KinopoiskSelenium
             Driver.Close();
         }
 
+        public void HoverCursorOverElement(By element)
+        {
+            SetActions();
+            Actions.MoveToElement(GetElement(element)).Perform();
+        }
+
         private void PerformClickViaActions(params IWebElement[] elements)
         {
             foreach (var element in elements)

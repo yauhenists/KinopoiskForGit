@@ -150,6 +150,7 @@
     <Compile Include="Pages\ToolsQA\SelectMenuPage.cs" />
     <Compile Include="Pages\ToolsQA\Tabletka\TabletkaPage.cs" />
     <Compile Include="Pages\ToolsQA\Tabletka\TabletkaResultsPage.cs" />
+    <Compile Include="Pages\ToolsQA\ToolTipsPage.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Tests\Kinopoisk\KinopoiskTests.cs" />
     <Compile Include="Pages\Kinopoisk\MainPage.cs" />

@@ -7,6 +7,7 @@ using KinopoiskSelenium.Pages.ToolsQA;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Assert = NUnit.Framework.Assert;
+using StringAssert = NUnit.Framework.StringAssert;
 
 namespace KinopoiskSelenium.Tests.ToolsQA
 {
@@ -24,6 +25,14 @@ namespace KinopoiskSelenium.Tests.ToolsQA
                     Assert.IsTrue(mainPage.IsCorrectPageSource("<html lang", false));
                 }
                 );
+        }
+
+        [Test]
+        public void CheckTooltipText()
+        {
+            ToolTipsPage page = new ToolTipsPage(ConciseApi);
+            page.MoveCursorOnTooltipButton();
+            StringAssert.AreEqualIgnoringCase("You hovered over the Button", page.GetTooltipText());
         }
     }
 }
