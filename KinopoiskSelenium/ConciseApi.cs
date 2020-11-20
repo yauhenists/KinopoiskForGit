@@ -22,10 +22,17 @@ namespace KinopoiskSelenium
     }
     public class ConciseApi
     {
-        private IWebDriver Driver { get; }
-        private DefaultWait<IWebDriver> Wait { get; }
-        private Actions Actions { get; set; }
+        protected IWebDriver Driver { get; }
+        protected DefaultWait<IWebDriver> Wait { get; }
+        protected Actions Actions { get; set; }
         private List<IWebElement>_checkedElements = new List<IWebElement>();
+
+        public ConciseApi(ConciseApi conciseApi)
+        {
+            Driver = conciseApi.Driver;
+            Wait = conciseApi.Wait;
+            Actions = conciseApi.Actions;
+        }
 
         public ConciseApi(IWebDriver driver)
         {

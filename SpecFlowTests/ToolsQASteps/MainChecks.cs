@@ -33,7 +33,7 @@ namespace SpecFlowTests.ToolsQASteps
         [Then(@"I check title of webpage is (.*)")]
         public void ThenICheckTitleOfWebpageIs(string title)
         {
-            title = StringHelper.RemoveQuotest(title);
+            title = StringHelper.RemoveQuots(title);
             Console.WriteLine($"Title from feature - {title}");
             Assert.IsTrue(_mainPage.IsCorrectTitle(title));
         }
@@ -41,7 +41,7 @@ namespace SpecFlowTests.ToolsQASteps
         [Then(@"I check url is (.*)")]
         public void ThenICheckUrlIs(string url)
         {
-            url = StringHelper.RemoveQuotest(url);
+            url = StringHelper.RemoveQuots(url);
             Console.WriteLine($"Url from feature - {url}");
             Assert.IsTrue(_mainPage.IsCorrectUrl(url));
         }
@@ -49,7 +49,7 @@ namespace SpecFlowTests.ToolsQASteps
         [Then(@"I check code source is started with (.*)")]
         public void ThenICheckCodeSourceIsStartedWith(string sourceCode)
         {
-            sourceCode = StringHelper.RemoveQuotest(sourceCode);
+            sourceCode = StringHelper.RemoveQuots(sourceCode);
             Console.WriteLine($"Source Code from feature - {sourceCode}");
             Assert.IsTrue(_mainPage.IsCorrectPageSource(sourceCode));
         }

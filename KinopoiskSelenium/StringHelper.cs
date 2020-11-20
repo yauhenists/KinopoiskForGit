@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpecFlowTests
+namespace KinopoiskSelenium
 {
     public class StringHelper
     {
@@ -18,7 +18,7 @@ namespace SpecFlowTests
             DateTime dateTime = DateTime.Parse(date);
             day = dateTime.Day;
             month = dateTime.Month;
-            year = dateTime.Month;
+            year = dateTime.Year;
         }
     }
 }
