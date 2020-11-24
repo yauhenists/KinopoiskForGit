@@ -66,6 +66,12 @@ namespace KinopoiskSelenium
             return AssertThat(d => d.FindElements(element)).ToList();
         }
 
+        public List<string> GetValuesOfElements(By element)
+        {
+            var elements = GetElements(element);
+            return elements.Select(x => x.Text).ToList();
+        }
+
         public List<IWebElement> GetElements(IWebElement baseElement, By element)
         {
             return AssertThat(d => baseElement.FindElements(element)) .ToList();
@@ -74,6 +80,11 @@ namespace KinopoiskSelenium
         public void Click(By element)
         {
             GetElement(element).Click();
+        }
+
+        public void Click(IWebElement element)
+        {
+            element.Click();
         }
 
         public void ClickViaActions(By element)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,5 +21,16 @@ namespace SpecFlowTests
             month = dateTime.Month;
             year = dateTime.Month;
         }
+
+        public static string GetDateTime(string date)
+        {
+            return DateTime.Parse(date).ToString("MM/dd/yyyy");
+        }
+
+        public static string GetMonthYearInEnglish(int month = 0)
+        {
+            return DateTime.Now.AddMonths(month).ToString("MMMM yyyy", CultureInfo.GetCultureInfo("en-en"));
+        }
+
     }
 }
