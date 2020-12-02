@@ -251,6 +251,7 @@ namespace KinopoiskSelenium
         public T AssertThat<T>(Func<IWebDriver, T> condition)
         {
             return Wait.Until(condition);
+            //some changes for pull request
         }
 
         public IAlert GetAlert()
